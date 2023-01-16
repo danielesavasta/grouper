@@ -1,0 +1,905 @@
+:root {
+    --blue: #3393FF;
+    --yellow: #F6C531;
+    --green: #58FF3E;
+    --lightgray: #f5f5f5;
+    --lighty: #FFE666;
+    --lightb: #CEE6FF;
+    --lightg: #A8FF9B;
+    --red: #E84281;
+    --dred: #D95D39;
+    --lightr: #F3A3C1;
+}
+
+html {
+    font-size: 62.5%;
+    /*background-image: repeating-linear-gradient(-45deg,var(--pattern-bg-color),var(--pattern-bg-color) 40%,currentColor 0,currentColor 50%,var(--pattern-bg-color) 0);*/
+    background-image: repeating-linear-gradient(-45deg, #ffffff, #ffffff 40%, #EFEFEF 0, #EFEFEF 50%, #ffffff 0);
+    background-size: 0.8rem 0.8rem;
+    /*background-size: 5.66px 5.66px;*/
+}
+
+:root {
+    --main-bg-color: pink;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0
+}
+
+/*-------------------------------------------------*/
+
+.toggler {
+    /* ALWAYS KEEPING THE TOGGLER OR THE CHECKBOX ON TOP OF EVERYTHING :  */
+    z-index: 2;
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.hamburger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+    width: 50px;
+    padding: 1rem;
+    /* FOR DISPLAYING EVERY ELEMENT IN THE CENTER : */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CREATING THE MIDDLE LINE OF THE HAMBURGER : */
+
+.hamburger>div {
+    position: relative;
+    top: 0;
+    right: 0;
+    background: black;
+    height: 2px;
+    width: 60%;
+    transition: all 0.4s ease;
+}
+
+/* CREATING THE TOP AND BOTTOM LINES : 
+TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
+
+.hamburger>div::before,
+.hamburger>div::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 0;
+    background: black;
+    width: 100%;
+    height: 2px;
+    transition: all 0.4s ease;
+}
+
+.hamburger>div::after {
+    top: 10px;
+}
+
+/* IF THE TOGGLER IS IN ITS CHECKED STATE, THEN SETTING THE BACKGROUND OF THE MIDDLE LAYER TO COMPLETE BLACK AND OPAQUE :  */
+
+.toggler:checked+.hamburger>div {
+    background: rgba(0, 0, 0, 0);
+}
+
+.toggler:checked+.hamburger>div::before {
+    top: 0;
+    transform: rotate(45deg);
+    background: black;
+}
+
+/* AND ROTATING THE TOP AND BOTTOM LINES :  */
+
+.toggler:checked+.hamburger>div::after {
+    top: 0;
+    transform: rotate(135deg);
+    background: black;
+}
+
+/* MAIN MENU WITH THE WHITE BACKGROUND AND THE TEXT :  */
+
+.menu {
+    background: white;
+    position: absolute;
+    right: 0;
+    width: 0%;
+    height: 92.5vh;
+    /* APPLYING TRANSITION TO THE MENU :  */
+    transition: all 0.4s ease;
+    box-shadow: 0px 5px 30px -4px rgb(0 0 0 / 22%);
+}
+
+/* IF THE TOGGLER IS CHECKED, THEN INCREASE THE WIDTH OF THE MENU TO 30% , CREATING A SMOOTH EFFECT :  */
+.toggler:checked~.menu {
+    width: 15%;
+}
+
+/* STYLING THE LIST :  */
+.menu>div>ul {
+    display: flex;
+    flex-direction: column;
+    /* position: fixed;
+    right: 0;*/
+    top: 70px;
+    /*padding-left: 10px;*/
+    /* HIDDEN INITIALLY  :  */
+    visibility: hidden;
+}
+
+.menu>div>ul>li {
+    list-style: none;
+}
+
+.menu>div>ul>li>a {
+    color: #000;
+    text-decoration: none;
+    
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    transition: all 0.25s;
+    line-height: 3rem;
+}
+
+/* WHEN THE TOGGLER IS CHECKED, CHANGE THE VISIBILITY TO VISIBLE :  */
+.toggler:checked~.menu>div>ul {
+    transition: visibility 0.4s ease;
+    transition-delay: 0.1s;
+    visibility: visible;
+}
+
+.toggler:checked~.menu>div>ul>li>a:hover {
+    color: orange;
+    box-shadow: 0px 5px 30px -4px rgb(0 0 0 / 22%);
+    /*font-size: 2.5rem;*/
+}
+
+/*-------------------------------------------------*/
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    /*font-size: 16px;*/
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--lightgray);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/*-------------------------------------------------*/
+#dropdownNav {
+    height: 2em;
+    z-index: 1;
+    position: relative;
+}
+
+.but {
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+}
+
+.but,
+label {
+    padding: 0.5em 0.75em;
+    display: inline-block;
+    user-select: none;
+}
+
+nav>div>label {
+    background: #ffffff;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.12);
+    z-index: 1;
+    position: relative;
+}
+
+nav>div>label:hover {
+    background: var(--lightgray) !important;
+}
+
+.menu_toggle {
+    display: none;
+}
+
+label[for=add_menu_toggle] {
+    background-color: var(--yellow);
+}
+
+.umenu {
+    background-color: #ffffff;
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    -webkit-transition: all 0.3s ease;
+    text-align: left;
+    overflow-y: auto;
+}
+
+#abo_menu_toggle:checked+#abo_menu,
+#obj_menu_toggle:checked+#obj_menu,
+#vis_menu_toggle:checked+#vis_menu,
+#add_menu_toggle:checked+#add_menu,
+#add_image_toggle:checked+#add_image {
+    /*   min-height: 85vh;
+    padding: 0.75em;*/
+    margin: 0;
+    border: 5px solid #ffffff;
+}
+
+#vis_menu_container {
+    float: right;
+    margin-right: 8rem;
+}
+
+#add_menu_container,
+#vis_menu_container {
+    text-align: right;
+}
+
+#add_menu_container {
+    margin-left: 1em;
+    min-width: 40%;
+    position: relative;
+}
+
+#indexcard .draggable {
+    display: none
+}
+
+#obj_menu_container {
+    width: 18vw;
+}
+
+#obj_menu,
+#vis_menu,#add_menu {
+    text-align: left;
+    position: relative;
+    z-index: 0;
+}
+
+#obj_menu_toggle:checked+#obj_menu {
+    border-color: var(--green)
+}
+
+#vis_menu_toggle:checked+#vis_menu {
+    border-color: var(--blue)
+}
+
+#add_menu_toggle:checked+#add_menu {
+    border-color: #000;
+}
+
+#add_image_toggle:checked+#add_image {
+    border-color: var(--yellow)
+}
+
+#abo_menu_toggle:checked+#abo_menu {
+    border-color: var(--dred)
+}
+
+
+/*.menu_container > .umenu {
+    visibility: hidden;
+}*/
+
+.menu_container {
+    display: inline-block;
+    /*overflow: hidden;*/
+    vertical-align: top;
+    max-width: 20vw;
+}
+
+
+/*-------------------------------------------------*/
+
+button {
+    cursor: pointer;
+}
+
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chip.chip-checkbox>.chip-add-icon::after {
+    content: "add"
+}
+
+.chip.chip-checkbox.active>.chip-add-icon::after {
+    content: "done"
+}
+
+.chip>* {
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.chip input {
+    display: none;
+}
+
+.chip.chip-checkbox,
+.chip.chip-toggle,
+.chip.clickable {
+    cursor: pointer;
+}
+
+.chip.active {
+    background-color: var(--yellow);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12)
+}
+
+.chip:hover,
+.chip:focus {
+    background-color: var(--lighty);
+}
+
+.chip:active:focus {
+    background-color: var(--yellow);
+}
+
+.chip:checked,
+.chip[aria-checked="true"] {
+    background-color: var(--yellow);
+}
+
+.chip button {
+    border: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    background: none;
+    display: inline-flex;
+}
+
+.chip {
+    transition: all 0.3s ease-in-out;
+    background-color: #d3d2d2;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 6px 4px 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.chip i.material-icons {
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/*-------------------------------------------------*/
+
+#dbloader {
+    position: absolute;
+    width: 100vw;
+    height: 95vh;
+    top: 5vh;
+    left: 0;
+    z-index: 10000;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+#dbloader>h2 {
+    padding-top: 100px;
+}
+
+#loading {
+    margin-top: 50px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 0, 0, .3);
+    border-radius: 50%;
+    border-top-color: #000;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+/*-------------------------------------------------*/
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow-x: hidden;
+    font-size: 10px;
+    z-index:0;
+}
+
+h1 {
+    -webkit-box-shadow: 0px 5px 30px -4px rgb(0 0 0 / 11%);
+    box-shadow: 0px 5px 30px -4px rgb(0 0 0 / 11%);
+    /*background: #fff;*/
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 10px;
+    padding: 0.5em;
+    text-align: center;
+}
+
+.dropzone {
+    min-height: 20vw;
+    min-width: 80px;
+}
+
+.drop_vis {
+    border: 5px var(--blue) solid;
+}
+
+.indexCardElement {
+    width: 100%;
+/*    display: table;*/
+    display: flex;
+
+    transition: all 0.25s;
+}
+input:focus + label,textarea:focus + label,
+input:hover + label,textarea:hover + label  {
+    font-weight:bold;
+    padding-left: 20px;
+}
+input { order: 2; }
+textarea{ order:2}
+label { order: 1; }
+input + label,textarea + label {transition: all 0.25s; }
+.umenu label {
+    display: table-cell;
+    width: 20%;
+    text-transform: uppercase;
+}
+
+fieldset {
+    border-top: 1px solid #CCC;
+    margin: 0.5em 0 2em;
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+    min-height: 5em;
+   /* width: 100%*/
+}
+
+input[type="search"],
+input,
+textarea {
+    color: #888;
+    display: table-cell;
+    font: italic 1.1em/1.35em Verdana, sans-serif;
+    letter-spacing: 0.05em;
+    outline: 0;
+    width: 100%;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    transition: all 0.2s;
+    z-index: 1;
+    position: relative;
+    transition: all 0.2s
+}
+
+input:focus,
+textarea:focus {
+    color: #000;
+}
+
+input:focus {
+    font-size: 1.2em;
+}
+
+.umenu>li {
+    margin-bottom: 0.75em;
+}
+
+legend {
+    user-select: none;
+}
+
+textarea {
+    margin: 0.5em 0 0
+}
+
+button {
+    font-size: inherit;
+    background: #d3d2d2;
+    padding: 0.2em;
+}
+
+#addProp {
+    margin: 3em 0;
+}
+
+#addProp:hover,
+.save:hover {
+    background-color: var(--lighty);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.12);
+
+}
+
+.half {
+    width: 45%;
+    margin-left: 2%;
+}
+
+.newProp {
+    padding: 0.5em 0.75em;
+}
+
+.save {
+    position: sticky;
+    bottom: 0;
+    width: calc(100%);
+    margin-top: -0.5em;
+    padding: 18px;
+    z-index:1;
+    /*top: 5em;
+    float: right;
+    display: flex;
+    align-items: flex-end;
+    */
+}
+
+.object {
+    font-size: 0.9em;
+    letter-spacing: 0.15rem;
+    padding: 0.3rem;
+    user-select: none;
+    cursor: move;
+}
+
+.object:hover {
+    background-color: var(--lighty);
+}
+
+#objectWindowData,
+#aboutWindowData {
+    display: block;
+    margin-top: 1em;
+    padding: 0.25em;
+    border-bottom: 1px solid #ccc;
+}
+
+#objectWindow,
+#aboutWindow {
+    background: var(--lightgray);
+    overflow-y: auto;
+    max-height: 72vh;
+}
+
+#objdrop,
+#fildrop {
+    width: 100%;
+    min-width: 20em;
+    height: 10em;
+    background-color: var(--lightb);
+}
+
+.drop-drop {
+    background-color: var(--blue)
+}
+
+.can-drop {
+    background-color: var(--blue) !important;
+}
+
+#deleteObjs {
+    background: var(--lightg);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    min-height: 2em;
+    margin: -0.5em 0 0 -0.75em;
+    text-align: center;
+}
+
+#deleteObjsB {
+    background-color: var(--lightg);
+    color: var(--lightg);
+}
+
+#deleteObjsB:hover {
+    background-color: var(--red) !important;
+}
+
+#editID {
+    display: none;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    z-index: -1
+}
+
+
+/*
+#base {
+    float: left;
+    width: 100vw;
+    height: 93vh;
+    position: absolute;
+    top: 7vh;
+    z-index: -1;
+}*/
+
+#timeline {
+    background: #fff;
+    border: 2px solid;
+    margin: 7em 5em 0;
+    /*min-height: 90vh;*/
+    position: relative;
+}
+
+#timeline_line {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 100%
+}
+
+.timeline_col {
+    border-left: 1px solid #eee;
+    /*height: 0.5em;*/
+    display: inline-block;
+    vertical-align: top;
+}
+
+.majorTick {
+    border-color: #999;
+    height: 80vh;
+}
+
+#timeline_line:last-child {
+    border-right: 1px solid #aaa;
+}
+
+.timedate {
+    position: absolute;
+    transform: rotate(90deg);
+    top: -2.5em;
+    margin-left: -1em;
+    letter-spacing: 0.1em;
+    text-align: center;
+    font-weight: 200;
+}
+
+.timeline_item {
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    /*border-bottom: 3px solid #000;*/
+}
+
+select {
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-bottom:1px solid #000;
+    padding: 0.25em;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+}
+
+.leftRel,
+.relRel {
+    display: inline-block;
+    width: 45%;
+    vertical-align: middle;
+    
+    background-color: var(--lightgray)
+}
+.leftRel{
+height: 19px;
+}
+.imageThumb {
+    width: 100px;
+}
+#add_image_container{
+    width: 300px;
+}
+#add_image_container legend {
+    margin: 1em 0
+}
+
+#indexCard {
+  overflow-y: scroll;
+  max-height:100%;
+}
+
+#ina {
+    border-top: 1px solid #ccc;
+    margin: 2em;
+    padding-top: 1em
+}
+
+#visOpt input[type="checkbox"] {
+    display: none;
+}
+
+#visOpt label {
+    display: inline-block;
+}
+
+#visOpt input[type="checkbox"]+label {
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    cursor: pointer;
+    border-radius: 50px;
+    background-color: var(--lightgray);
+    /*border: solid 2px #7d7d7d;*/
+    padding: 0.5rem 2rem;
+    display: inline-block;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#visOpt input[type="checkbox"]:checked+label {
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    background-color: var(--blue);
+    color: white;
+}
+
+.timeline_item {
+    transition: all 0.3s;
+    display: block;
+    user-select: none;
+    /* margin-left: -50%;
+    position: relative*/
+}
+
+.timeline_item:hover,.gallery_item:hover {
+    /*height: 40vh !important;
+    margin-left: -50%;
+    margin-top: -50%;*/
+    transform: scale(7);
+    z-index: 10000;
+}
+
+.timeline_item.specialClass {
+    transform: scale(4);
+    z-index: 10000;
+}
+
+.timeline_item:hover img,
+.timeline_item.specialClass img,
+.gallery_item:hover img {
+    -webkit-box-shadow: 5px 5px 19px 11px rgba(0, 0, 0, 0.18);
+    box-shadow: 5px 5px 19px 11px rgba(0, 0, 0, 0.18);
+}
+
+.timeline_item img {
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 0;
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.timeline_item h2 {
+    background-color: #fff;
+    z-index: 1;
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.hideImgs img {
+    opacity: 0;
+}
+
+.hideText h2 {
+    opacity: 0;
+}
+
+.imgThumb {
+    display: none
+}
+
+.imgThumb.show {
+    margin: 0 auto;
+    display: block
+}
+
+.criteria {
+    position: absolute;
+    font-size: 5em;
+    font-weight: 900;
+    color: var(--red);
+    border-bottom: 1px dotted var(--red);
+    opacity: .7;
+    width: 100%;
+}
+.gallery_item{
+    width:5vw;
+    height:5vw;
+    display: inline-block;
+    margin:3px;
+    transition: all 0.3s;
+    user-select: none;
+}
+.gallery_item>img{max-width:100%;max-height:100%}
+.noshow{display:none}
+.on{
+    /*obj_l.style.backgroundColor = c;*/
+visibility :visible;
+opacity : 1;
+min-height : 93vh;
+}
+.off{
+    max-height: 0;
+    min-height 0;
+    opacity: 0;
+    visibility :hidden;
+}
+.draggable{
+    z-index:20000;
+}
