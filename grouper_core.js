@@ -66,6 +66,8 @@ function saveJson(title, content) {
 const readItemsJson = json => {
   json.forEach(item => console.log(item.name));
 };
+console.log(readItemsJson);
+
   /*
 fetch("./" + settings.collection + ".json")
 .then(async (data) => {
@@ -226,6 +228,7 @@ drag.containers.push(document.getElementById('indexCard'));
 
 function populateAbout(res) {
     console.log("this is the about");
+
     let aboutcard = document.getElementById("aboutWindowData");
     let count = [];
 
