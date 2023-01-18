@@ -225,6 +225,7 @@ drag.containers.push(document.getElementById('indexCard'));
 /*-------------------------------- populate about ----------------------------------------*/
 
 function populateAbout(res) {
+    console.log("this is the about");
     let aboutcard = document.getElementById("aboutWindowData");
     let count = [];
 
